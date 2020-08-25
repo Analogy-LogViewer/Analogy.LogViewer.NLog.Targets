@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30404.54
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogy.LogViewer.NLog.Targets", "Analogy.LogViewer.NLog.Targets\Analogy.LogViewer.NLog.Targets.csproj", "{68AE619D-E4FF-4FE2-866A-A85B0369097B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogy.LogViewer.NLog.Targets", "Analogy.LogViewer.NLog.Targets\Analogy.LogViewer.NLog.Targets.csproj", "{68AE619D-E4FF-4FE2-866A-A85B0369097B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogy.LogViewer.NLog.Targets.UnitTests", "Analogy.LogViewer.NLog.Targets.UnitTests\Analogy.LogViewer.NLog.Targets.UnitTests.csproj", "{49CBA408-3493-4638-A526-754E88A8094F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{68AE619D-E4FF-4FE2-866A-A85B0369097B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68AE619D-E4FF-4FE2-866A-A85B0369097B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68AE619D-E4FF-4FE2-866A-A85B0369097B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49CBA408-3493-4638-A526-754E88A8094F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49CBA408-3493-4638-A526-754E88A8094F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49CBA408-3493-4638-A526-754E88A8094F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49CBA408-3493-4638-A526-754E88A8094F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
