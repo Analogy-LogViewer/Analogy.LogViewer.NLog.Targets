@@ -1,2 +1,2 @@
-# Analogy.LogViewer.NLog.Sinks
-NLog to Analogy Log Server Sink
+# Analogy.LogViewer.NLog.Targets
+NLog to Analogy Log Server Target
