@@ -44,7 +44,7 @@ namespace Analogy.LogViewer.NLog.Targets
             else
                 level = AnalogyLogLevel.Unknown;
             return producer.Log(logEvent.FormattedMessage, logEvent.CallerClassName, level, string.Empty, Environment.MachineName,
-                Environment.UserName, ProcessName, ProcessId, -1, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
+                Environment.UserName, ProcessName, ProcessId, -1,null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
         }
 
     }
