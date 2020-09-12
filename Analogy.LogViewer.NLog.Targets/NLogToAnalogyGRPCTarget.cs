@@ -14,7 +14,7 @@ namespace Analogy.LogViewer.NLog.Targets
         private static readonly int ProcessId = Process.GetCurrentProcess().Id;
         private static readonly string ProcessName = Process.GetCurrentProcess().ProcessName;
 #if NETCOREAPP3_1
-        readonly Analogy.LogServer.Clients.AnalogyMessageProducer producer;
+        public static LogServer.Clients.AnalogyMessageProducer producer;
 
 #endif
         public NLogToAnalogyGRPCTarget() : this("http://localhost:6000")
@@ -22,7 +22,7 @@ namespace Analogy.LogViewer.NLog.Targets
         }
         public NLogToAnalogyGRPCTarget(string address)
         {
-            producer = new Analogy.LogServer.Clients.AnalogyMessageProducer(address, null);
+            producer = new LogServer.Clients.AnalogyMessageProducer(address, null);
         }
         protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken)
         {
@@ -34,18 +34,31 @@ namespace Analogy.LogViewer.NLog.Targets
             else if (logEvent.Level == LogLevel.Fatal)
                 level = AnalogyLogLevel.Critical;
             else if (logEvent.Level == LogLevel.Info)
-                level = AnalogyLogLevel.Event;
+                level = AnalogyLogLevel.Information;
             else if (logEvent.Level == LogLevel.Off)
-                level = AnalogyLogLevel.Disabled;
+                level = AnalogyLogLevel.None;
             else if (logEvent.Level == LogLevel.Trace)
-                level = AnalogyLogLevel.Event;
+                level = AnalogyLogLevel.Trace;
             else if (logEvent.Level == LogLevel.Warn)
                 level = AnalogyLogLevel.Warning;
             else
                 level = AnalogyLogLevel.Unknown;
             return producer.Log(logEvent.FormattedMessage, logEvent.CallerClassName, level, string.Empty, Environment.MachineName,
-                Environment.UserName, ProcessName, ProcessId, -1,null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
+                Environment.UserName, ProcessName, ProcessId, -1, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
         }
 
+        public new void Dispose()
+        {
+            try
+            {
+                base.Dispose();
+                producer.Dispose();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
+
 }
