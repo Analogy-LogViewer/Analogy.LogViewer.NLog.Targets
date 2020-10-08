@@ -28,36 +28,39 @@ namespace Analogy.LogViewer.NLog.Targets
         {
             AnalogyLogLevel level;
             if (logEvent.Level == LogLevel.Error)
+            {
                 level = AnalogyLogLevel.Error;
+            }
             else if (logEvent.Level == LogLevel.Debug)
+            {
                 level = AnalogyLogLevel.Debug;
+            }
             else if (logEvent.Level == LogLevel.Fatal)
+            {
                 level = AnalogyLogLevel.Critical;
+            }
             else if (logEvent.Level == LogLevel.Info)
+            {
                 level = AnalogyLogLevel.Information;
+            }
             else if (logEvent.Level == LogLevel.Off)
+            {
                 level = AnalogyLogLevel.None;
+            }
             else if (logEvent.Level == LogLevel.Trace)
+            {
                 level = AnalogyLogLevel.Trace;
+            }
             else if (logEvent.Level == LogLevel.Warn)
+            {
                 level = AnalogyLogLevel.Warning;
+            }
             else
+            {
                 level = AnalogyLogLevel.Unknown;
+            }
             return producer.Log(logEvent.FormattedMessage, logEvent.CallerClassName, level, string.Empty, Environment.MachineName,
                 Environment.UserName, ProcessName, ProcessId, -1, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
-        }
-
-        public new void Dispose()
-        {
-            try
-            {
-                base.Dispose();
-                producer.Dispose();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-            }
         }
     }
 
