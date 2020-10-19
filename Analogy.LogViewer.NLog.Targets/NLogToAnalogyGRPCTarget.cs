@@ -1,5 +1,7 @@
 ﻿using Analogy.Interfaces;
 using NLog;
+using NLog.Config;
+using NLog.Layouts;
 using NLog.Targets;
 using System;
 using System.Diagnostics;
@@ -12,56 +14,126 @@ namespace Analogy.LogViewer.NLog.Targets
     public class NLogToAnalogyGRPCTarget : AsyncTaskTarget
     {
         private static readonly int ProcessId = Process.GetCurrentProcess().Id;
-        private static readonly string ProcessName = Process.GetCurrentProcess().ProcessName;
-#if NETCOREAPP3_1
-        public static LogServer.Clients.AnalogyMessageProducer producer;
 
-#endif
+        private LogServer.Clients.AnalogyMessageProducer _producer;
+
+        [RequiredParameter]
+        public Layout Address { get; set; }
+
         public NLogToAnalogyGRPCTarget() : this("http://localhost:6000")
         {
         }
+
         public NLogToAnalogyGRPCTarget(string address)
         {
-            producer = new LogServer.Clients.AnalogyMessageProducer(address, null);
+            Address = address;
+            Layout = "${message}";
+
+            // IncludeCallSite = true;
         }
+
+        protected override void InitializeTarget()
+        {
+            if (ContextProperties.Count == 0)
+            {
+                ContextProperties.Add(new TargetPropertyWithContext(Constants.MachineName, "${MachineName}"));
+                ContextProperties.Add(new TargetPropertyWithContext(Constants.ProcessName, "${ProcessName}"));
+                ContextProperties.Add(new TargetPropertyWithContext(Constants.UserName, "${Environment-User}"));
+                ContextProperties.Add(new TargetPropertyWithContext(Constants.Source, "${logger}"));
+                ContextProperties.Add(new TargetPropertyWithContext(Constants.ThreadId, "${ThreadId}"));
+            }
+
+            base.InitializeTarget();
+
+            var address = RenderLogEvent(Address, LogEventInfo.CreateNullEvent());
+            _producer = new LogServer.Clients.AnalogyMessageProducer(address, null);
+        }
+
+        protected override void CloseTarget()
+        {
+            base.CloseTarget();
+            _producer?.Dispose();
+        }
+
         protected override Task WriteAsyncTask(LogEventInfo logEvent, CancellationToken cancellationToken)
         {
-            AnalogyLogLevel level;
-            if (logEvent.Level == LogLevel.Error)
+            var logLevel = ConvertLogLevel(logEvent.Level);
+            var logMessage = RenderLogEvent(Layout, logEvent);
+
+            int processId = ProcessId;
+            int threadId = 0;
+            string sourceName = logEvent.LoggerName;
+            string machineName = null;
+            string processName = null;
+            string userName = null;
+            string categoryName = string.Empty;
+            for (int i = 0; i < ContextProperties.Count; ++i)
             {
-                level = AnalogyLogLevel.Error;
+                var contextProperty = ContextProperties[i];
+                if (Constants.MachineName.Equals(contextProperty.Name))
+                    machineName = RenderLogEvent(contextProperty.Layout, logEvent);
+                else if (Constants.ProcessName.Equals(contextProperty.Name))
+                    processName = RenderLogEvent(contextProperty.Layout, logEvent);
+                else if (Constants.UserName.Equals(contextProperty.Name))
+                    userName = RenderLogEvent(contextProperty.Layout, logEvent);
+                else if (Constants.Category.Equals(contextProperty.Name))
+                    categoryName = RenderLogEvent(contextProperty.Layout, logEvent);
+                else if (Constants.Source.Equals(contextProperty.Name))
+                    sourceName = RenderLogEvent(contextProperty.Layout, logEvent);
+                else if (Constants.ThreadId.Equals(contextProperty.Name))
+                {
+                    var threadIdProperty = RenderLogEvent(contextProperty.Layout, logEvent);
+                    if (!string.IsNullOrEmpty(threadIdProperty))
+                        int.TryParse(threadIdProperty, out threadId);
+                }
+                else if (Constants.ProcessId.Equals(contextProperty.Name))
+                {
+                    var processIdProperty = RenderLogEvent(contextProperty.Layout, logEvent);
+                    if (!string.IsNullOrEmpty(processIdProperty))
+                        int.TryParse(processIdProperty, out processId);
+                }
             }
-            else if (logEvent.Level == LogLevel.Debug)
+
+            // var additionalInformation = GetAllProperties();
+
+            return _producer?.Log(logMessage, sourceName, logLevel, categoryName, machineName,
+                userName, processName, processId, threadId, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
+        }
+
+        private static AnalogyLogLevel ConvertLogLevel(LogLevel logLevel)
+        {
+            if (logLevel == LogLevel.Error)
             {
-                level = AnalogyLogLevel.Debug;
+                return AnalogyLogLevel.Error;
             }
-            else if (logEvent.Level == LogLevel.Fatal)
+            else if (logLevel == LogLevel.Debug)
             {
-                level = AnalogyLogLevel.Critical;
+                return AnalogyLogLevel.Debug;
             }
-            else if (logEvent.Level == LogLevel.Info)
+            else if (logLevel == LogLevel.Fatal)
             {
-                level = AnalogyLogLevel.Information;
+                return AnalogyLogLevel.Critical;
             }
-            else if (logEvent.Level == LogLevel.Off)
+            else if (logLevel == LogLevel.Info)
             {
-                level = AnalogyLogLevel.None;
+                return AnalogyLogLevel.Information;
             }
-            else if (logEvent.Level == LogLevel.Trace)
+            else if (logLevel == LogLevel.Trace)
             {
-                level = AnalogyLogLevel.Trace;
+                return AnalogyLogLevel.Trace;
             }
-            else if (logEvent.Level == LogLevel.Warn)
+            else if (logLevel == LogLevel.Warn)
             {
-                level = AnalogyLogLevel.Warning;
+                return AnalogyLogLevel.Warning;
+            }
+            else if (logLevel == LogLevel.Off)
+            {
+                return AnalogyLogLevel.None;
             }
             else
             {
-                level = AnalogyLogLevel.Unknown;
+                return AnalogyLogLevel.Unknown;
             }
-            return producer.Log(logEvent.FormattedMessage, logEvent.CallerClassName, level, string.Empty, Environment.MachineName,
-                Environment.UserName, ProcessName, ProcessId, -1, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
         }
     }
-
 }
