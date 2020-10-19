@@ -29,7 +29,7 @@ namespace Analogy.LogViewer.NLog.Targets
             Address = address;
             Layout = "${message}";
 
-            // IncludeCallSite = true;
+            // IncludeCallSite = true
         }
 
         protected override void InitializeTarget()
@@ -71,30 +71,44 @@ namespace Analogy.LogViewer.NLog.Targets
             {
                 var contextProperty = ContextProperties[i];
                 if (Constants.MachineName.Equals(contextProperty.Name))
+                {
                     machineName = RenderLogEvent(contextProperty.Layout, logEvent);
+                }
                 else if (Constants.ProcessName.Equals(contextProperty.Name))
+                {
                     processName = RenderLogEvent(contextProperty.Layout, logEvent);
+                }
                 else if (Constants.UserName.Equals(contextProperty.Name))
+                {
                     userName = RenderLogEvent(contextProperty.Layout, logEvent);
+                }
                 else if (Constants.Category.Equals(contextProperty.Name))
+                {
                     categoryName = RenderLogEvent(contextProperty.Layout, logEvent);
+                }
                 else if (Constants.Source.Equals(contextProperty.Name))
+                {
                     sourceName = RenderLogEvent(contextProperty.Layout, logEvent);
+                }
                 else if (Constants.ThreadId.Equals(contextProperty.Name))
                 {
                     var threadIdProperty = RenderLogEvent(contextProperty.Layout, logEvent);
                     if (!string.IsNullOrEmpty(threadIdProperty))
+                    {
                         int.TryParse(threadIdProperty, out threadId);
+                    }
                 }
                 else if (Constants.ProcessId.Equals(contextProperty.Name))
                 {
                     var processIdProperty = RenderLogEvent(contextProperty.Layout, logEvent);
                     if (!string.IsNullOrEmpty(processIdProperty))
+                    {
                         int.TryParse(processIdProperty, out processId);
+                    }
                 }
             }
 
-            // var additionalInformation = GetAllProperties();
+            // var additionalInformation = GetAllProperties()
 
             return _producer?.Log(logMessage, sourceName, logLevel, categoryName, machineName,
                 userName, processName, processId, threadId, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
