@@ -1,12 +1,11 @@
-﻿using Analogy.Interfaces;
+﻿using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
+using Analogy.Interfaces;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
-using System;
-using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Analogy.LogViewer.NLog.Targets
 {
@@ -63,9 +62,9 @@ namespace Analogy.LogViewer.NLog.Targets
             int processId = ProcessId;
             int threadId = 0;
             string sourceName = logEvent.LoggerName;
-            string machineName = null;
-            string processName = null;
-            string userName = null;
+            string machineName = string.Empty;
+            string processName = string.Empty;
+            string userName = string.Empty;
             string categoryName = string.Empty;
             for (int i = 0; i < ContextProperties.Count; ++i)
             {
@@ -108,10 +107,10 @@ namespace Analogy.LogViewer.NLog.Targets
                 }
             }
 
-            // var additionalInformation = GetAllProperties()
-
-            return _producer?.Log(logMessage, sourceName, logLevel, categoryName, machineName,
-                userName, processName, processId, threadId, null, logEvent.CallerMemberName, logEvent.CallerLineNumber, logEvent.CallerFilePath);
+            string memberName = logEvent.CallerMemberName ?? "";
+            string filePath = logEvent.CallerFilePath ?? "";
+            return _producer?.Log(logMessage, sourceName, logLevel, categoryName, machineName, userName, processName,
+                processId, threadId, null, memberName, logEvent.CallerLineNumber, filePath);
         }
 
         private static AnalogyLogLevel ConvertLogLevel(LogLevel logLevel)
@@ -120,34 +119,32 @@ namespace Analogy.LogViewer.NLog.Targets
             {
                 return AnalogyLogLevel.Error;
             }
-            else if (logLevel == LogLevel.Debug)
+
+            if (logLevel == LogLevel.Debug)
             {
                 return AnalogyLogLevel.Debug;
             }
-            else if (logLevel == LogLevel.Fatal)
+            if (logLevel == LogLevel.Fatal)
             {
                 return AnalogyLogLevel.Critical;
             }
-            else if (logLevel == LogLevel.Info)
+            if (logLevel == LogLevel.Info)
             {
                 return AnalogyLogLevel.Information;
             }
-            else if (logLevel == LogLevel.Trace)
+            if (logLevel == LogLevel.Trace)
             {
                 return AnalogyLogLevel.Trace;
             }
-            else if (logLevel == LogLevel.Warn)
+            if (logLevel == LogLevel.Warn)
             {
                 return AnalogyLogLevel.Warning;
             }
-            else if (logLevel == LogLevel.Off)
+            if (logLevel == LogLevel.Off)
             {
                 return AnalogyLogLevel.None;
             }
-            else
-            {
-                return AnalogyLogLevel.Unknown;
-            }
+            return AnalogyLogLevel.Unknown;
         }
     }
 }

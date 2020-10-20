@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30404.54
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogy.LogViewer.NLog.Targets", "Analogy.LogViewer.NLog.Targets\Analogy.LogViewer.NLog.Targets.csproj", "{68AE619D-E4FF-4FE2-866A-A85B0369097B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Analogy.LogViewer.NLog.Targets.UnitTests", "Analogy.LogViewer.NLog.Targets.UnitTests\Analogy.LogViewer.NLog.Targets.UnitTests.csproj", "{49CBA408-3493-4638-A526-754E88A8094F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Analogy.LogViewer.NLog.Targets.UnitTests", "Analogy.LogViewer.NLog.Targets.UnitTests\Analogy.LogViewer.NLog.Targets.UnitTests.csproj", "{49CBA408-3493-4638-A526-754E88A8094F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2AD56165-40DC-4358-A1E4-7405DFA3A32C}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
