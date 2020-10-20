@@ -60,6 +60,7 @@ jobs:
         path: ./Analogy.LogViewer.NLog.Targets/bin/${{ matrix.configuration }}
   push-nuget:
     name: 'Push NuGet Packages'
+    if: ${{ github.event_name == 'push'}}
     needs: build
     runs-on: windows-latest
     steps:
