@@ -21,7 +21,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Analogy.LogServer.Clients" Version="0.4.13" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.9.0" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.9.1.1" />
 		<PackageReference Include="NLog" Version="4.7.6" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
 			<PrivateAssets>all</PrivateAssets>
