@@ -45,7 +45,7 @@ namespace Analogy.LogViewer.NLog.Targets
             base.InitializeTarget();
 
             var address = RenderLogEvent(Address, LogEventInfo.CreateNullEvent());
-            _producer = new LogServer.Clients.AnalogyMessageProducer(address, null);
+            _producer = new LogServer.Clients.AnalogyMessageProducer(address);
         }
 
         protected override void CloseTarget()
