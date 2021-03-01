@@ -20,7 +20,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogServer.Clients" Version="0.5.4" />
+		<PackageReference Include="Analogy.LogServer.Clients" Version="0.5.5" />
 		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="2.10.2" />
 		<PackageReference Include="NLog" Version="4.7.8" />
 		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0">
