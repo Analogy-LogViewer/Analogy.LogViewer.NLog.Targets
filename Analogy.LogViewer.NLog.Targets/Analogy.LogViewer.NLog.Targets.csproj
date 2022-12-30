@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFrameworks>net7.0-windows;net6.0-windows;net48;net471</TargetFrameworks>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <Authors>Lior Banai © 2020-2022</Authors>
+    <Authors>Lior Banai © 2020-2023</Authors>
     <Company>Analogy.LogViewer</Company>
     <IsPackable>true</IsPackable>
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -16,11 +16,11 @@
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>AnalogyNlog.png</PackageIcon>
-    <Version>1.8.0</Version>
+    <Version>1.8.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Analogy.LogServer.Clients" Version="1.0.0" />
+    <PackageReference Include="Analogy.LogServer.Clients" Version="1.1.0" />
     <PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.6.0" />
     <PackageReference Include="NLog" Version="5.1.1" />
     <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
