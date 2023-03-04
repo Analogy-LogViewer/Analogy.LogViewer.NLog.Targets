@@ -16,14 +16,14 @@
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>AnalogyNlog.png</PackageIcon>
-    <Version>3.7.0</Version>
+    <Version>3.8.0</Version>
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Analogy.LogServer.Clients" Version="3.7.0" />
-    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.7.0" />
+    <PackageReference Include="Analogy.LogServer.Clients" Version="3.8.0" />
+    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.8.0" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
