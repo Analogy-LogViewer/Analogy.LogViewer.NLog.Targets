@@ -16,12 +16,14 @@
     <PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</PackageProjectUrl>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>AnalogyNlog.png</PackageIcon>
-    <Version>1.8.3</Version>
+    <Version>3.7.0</Version>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Analogy.LogServer.Clients" Version="1.3.0" />
-    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.6.0" />
+    <PackageReference Include="Analogy.LogServer.Clients" Version="3.7.0" />
+    <PackageReference Include="Analogy.LogViewer.Interfaces" Version="3.7.0" />
     <PackageReference Include="NLog" Version="5.1.2" />
     <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
       <PrivateAssets>all</PrivateAssets>
@@ -32,7 +34,12 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
   </ItemGroup>
-
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' or '$(TargetFramework)' == 'net471' ">
+    <PackageReference Include="PolySharp" Version="1.12.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <None Include="..\Assets\AnalogyNlog.png">
       <Pack>True</Pack>
