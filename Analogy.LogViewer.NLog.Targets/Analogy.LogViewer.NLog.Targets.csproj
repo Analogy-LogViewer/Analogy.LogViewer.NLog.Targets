@@ -16,7 +16,7 @@
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</PackageProjectUrl>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<PackageIcon>AnalogyNlog.png</PackageIcon>
-		<VersionPrefix>5.0.3.0</VersionPrefix>
+		<VersionPrefix>5.0.3.1</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 		<Nullable>enable</Nullable>
 		<LangVersion>latest</LangVersion>
