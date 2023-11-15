@@ -1,11 +1,11 @@
-﻿using System.Diagnostics;
-using System.Threading;
-using System.Threading.Tasks;
-using Analogy.Interfaces;
+﻿using Analogy.Interfaces;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
 using NLog.Targets;
+using System.Diagnostics;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Analogy.LogViewer.NLog.Targets
 {
