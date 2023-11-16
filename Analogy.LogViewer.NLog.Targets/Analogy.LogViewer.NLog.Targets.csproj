@@ -15,7 +15,7 @@
 		<PackageReference Include="Analogy.LogServer.Clients" Version="6.0.0" />
 		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="6.0.0.1" />
 		<PackageReference Include="NLog" Version="5.2.5" />
-		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.1.1">
+		<PackageReference Include="Microsoft.Build.Tasks.Git" Version="8.0.0">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
