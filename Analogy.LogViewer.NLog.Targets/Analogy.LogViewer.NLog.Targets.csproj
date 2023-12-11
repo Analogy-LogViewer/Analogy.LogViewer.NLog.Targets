@@ -14,7 +14,7 @@
 	<ItemGroup>
 		<PackageReference Include="Analogy.LogServer.Clients" Version="6.0.0" />
 		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="6.0.0.1" />
-		<PackageReference Include="NLog" Version="5.2.6" />
+		<PackageReference Include="NLog" Version="5.2.7" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\Assets\AnalogyNlog.png">
