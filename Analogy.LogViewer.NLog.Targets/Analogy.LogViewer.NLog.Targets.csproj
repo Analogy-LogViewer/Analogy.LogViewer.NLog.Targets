@@ -1,19 +1,19 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0-windows;net6.0-windows;net48</TargetFrameworks>
-		<Authors>Lior Banai © 2020-2024</Authors>
+		<TargetFrameworks>net9.0-windows;net8.0-windows;net48</TargetFrameworks>
+		<Authors>Lior Banai 2020-2025</Authors>
 		<Company>Analogy.LogViewer</Company>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</RepositoryUrl>
 		<PackageProjectUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</PackageProjectUrl>
 		<PackageIcon>AnalogyNlog.png</PackageIcon>
-		<VersionPrefix>7.0.0.0</VersionPrefix>
+		<VersionPrefix>7.1.0</VersionPrefix>
 		<VersionSuffix></VersionSuffix>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogServer.Clients" Version="7.0.0" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="7.0.0.1" />
+		<PackageReference Include="Analogy.LogServer.Clients" Version="7.1.0" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="7.1.0" />
 		<PackageReference Include="NLog" Version="5.3.4" />
 	</ItemGroup>
 	<ItemGroup>
