@@ -1,4 +1,5 @@
 ﻿using Analogy.Interfaces;
+using Analogy.Interfaces.DataTypes;
 using NLog;
 using NLog.Config;
 using NLog.Layouts;
