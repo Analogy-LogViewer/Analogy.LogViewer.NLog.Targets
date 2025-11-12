@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net9.0;net8.0;net48</TargetFrameworks>
+		<TargetFrameworks>net10.0;net9.0;net8.0;net48</TargetFrameworks>
 		<VersionPrefix>9.0.0</VersionPrefix>
-		<VersionSuffix>rc1</VersionSuffix>
+		<VersionSuffix></VersionSuffix>
 		<Authors>Lior Banai 2020-2026</Authors>
 		<Company>Analogy.LogViewer</Company>
 		<RepositoryUrl>https://github.com/Analogy-LogViewer/Analogy.LogViewer.NLog.Targets</RepositoryUrl>
@@ -12,8 +12,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogServer.Clients" Version="9.0.0-rc1" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="9.0.0-rc2" />
+		<PackageReference Include="Analogy.LogServer.Clients" Version="9.0.0" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="9.0.0" />
 		<PackageReference Include="NLog" Version="6.0.6" />
 	</ItemGroup>
 	<ItemGroup>
