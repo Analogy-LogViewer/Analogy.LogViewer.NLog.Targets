@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net10.0;net9.0;net8.0;net48</TargetFrameworks>
@@ -12,9 +12,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Analogy.LogServer.Clients" Version="9.0.6" />
-		<PackageReference Include="Analogy.LogViewer.Interfaces" Version="9.0.6" />
-		<PackageReference Include="NLog" Version="6.1.4" />
+		<PackageReference Include="Analogy.LogServer.Clients" />
+		<PackageReference Include="Analogy.LogViewer.Interfaces" />
+		<PackageReference Include="NLog" />
 	</ItemGroup>
 	<ItemGroup>
 		<None Include="..\Assets\AnalogyNlog.png">
@@ -23,7 +23,7 @@
 		</None>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="10.0.300" />
+	  <PackageReference Update="Microsoft.SourceLink.GitHub" />
 	</ItemGroup>
 
 </Project>
