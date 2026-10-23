@@ -7,8 +7,8 @@
 		<PackageVersion Include="Analogy.LogServer.Clients" Version="9.0.6" />
 		<PackageVersion Include="Analogy.LogViewer.Interfaces" Version="9.0.6" />
 		<PackageVersion Include="coverlet.collector" Version="10.1.0" />
-		<PackageVersion Include="Meziantou.Analyzer" Version="3.0.303" />
-		<PackageVersion Include="Meziantou.Polyfill" Version="1.0.166" />
+		<PackageVersion Include="Meziantou.Analyzer" Version="3.0.316" />
+		<PackageVersion Include="Meziantou.Polyfill" Version="1.0.168" />
 		<PackageVersion Include="Microsoft.Bcl.HashCode" Version="6.0.0" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="5.6.0" />
 		<PackageVersion Include="Microsoft.CodeAnalysis.CSharp.CodeStyle" Version="5.9.0" />
